@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2017-12-20T13:13:13Z">
+        <header>
+            <description>Language Labels for EXT:listelements backend</description>
+			<authorName>David Steeb</authorName>
+			<authorEmail>typo3@b13.de</authorEmail>
+		</header>
+		<body>
+			<trans-unit id="tt_content.listitems">
+				<source>List Items</source>
+				<target>Listeneinträge</target>
+			</trans-unit>
+			<trans-unit id="tt_content.b13_list_newRecordLinkAddTitle">
+				<source>Add Item</source>
+				<target>Eintrag hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="listitems.title">
+				<source>Listitem</source>
+				<target>Listeneinträge</target>
+			</trans-unit>
+			<trans-unit id="listitems.sorting_foreign">
+				<source>Sorting</source>
+				<target>Sortierung</target>
+			</trans-unit>
+			<trans-unit id="listitems.header">
+				<source>Header</source>
+				<target>Überschrift</target>
+			</trans-unit>
+			<trans-unit id="listitems.subheader">
+				<source>Subheader</source>
+				<target>Subheader</target>
+			</trans-unit>
+			<trans-unit id="listitems.layout">
+				<source>Layout</source>
+				<target>Layout</target>
+			</trans-unit>
+			<trans-unit id="listitems.bodytext">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
+			<trans-unit id="listitems.uid_foreign">
+				<source>Foreign Table Element Reference</source>
+				<target>Tabelle Referenz</target>
+			</trans-unit>
+			<trans-unit id="listitems.assets">
+				<source>Media Assets</source>
+				<target>Medien</target>
+			</trans-unit>
+			<trans-unit id="listitems.assets.addFileReference">
+				<source>Add Media</source>
+				<target>Medien hinzufügen</target>
+			</trans-unit>
+			<trans-unit id="listitems.link">
+				<source>Link</source>
+				<target>Link</target>
+			</trans-unit>
+			<trans-unit id="listitems.linklabel">
+				<source>Label for Link</source>
+				<target>Linktext</target>
+			</trans-unit>
+			<trans-unit id="listitems.linkconfig">
+				<source>Type/Configuration of Link</source>
+				<target>Konfiguration für Link</target>
+			</trans-unit>
+            <trans-unit id="listitems.linkconfig.I.0">
+                <source>Default</source>
+                <target>Standard</target>
+            </trans-unit>
+		</body>
+	</file>
+</xliff>

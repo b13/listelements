@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+    <file source-language="en" datatype="plaintext" original="messages" date="2017-12-20T13:13:13Z">
+        <header>
+            <description>Language Labels for EXT:listelements backend</description>
+			<authorName>David Steeb</authorName>
+			<authorEmail>typo3@b13.de</authorEmail>
+		</header>
+		<body>
+			<trans-unit id="tt_content.listitems">
+				<source>List Items</source>
+			</trans-unit>
+			<trans-unit id="tt_content.b13_list_newRecordLinkAddTitle">
+				<source>Add Item</source>
+			</trans-unit>
+			<trans-unit id="listitems.title">
+				<source>Listitem</source>
+			</trans-unit>
+			<trans-unit id="listitems.sorting_foreign">
+				<source>Sorting</source>
+			</trans-unit>
+			<trans-unit id="listitems.header">
+				<source>Header</source>
+			</trans-unit>
+			<trans-unit id="listitems.subheader">
+				<source>Subheader</source>
+			</trans-unit>
+			<trans-unit id="listitems.layout">
+				<source>Layout</source>
+			</trans-unit>
+			<trans-unit id="listitems.bodytext">
+				<source>Text</source>
+			</trans-unit>
+			<trans-unit id="listitems.uid_foreign">
+				<source>Foreign Table Element Reference</source>
+			</trans-unit>
+			<trans-unit id="listitems.assets">
+				<source>Media Assets</source>
+			</trans-unit>
+			<trans-unit id="listitems.assets.addFileReference">
+				<source>Add Media</source>
+			</trans-unit>
+			<trans-unit id="listitems.link">
+				<source>Link</source>
+			</trans-unit>
+			<trans-unit id="listitems.linklabel">
+				<source>Label for Link</source>
+			</trans-unit>
+			<trans-unit id="listitems.linkconfig">
+				<source>Type/Configuration of Link</source>
+			</trans-unit>
+			<trans-unit id="listitems.linkconfig.I.0">
+				<source>Default</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
