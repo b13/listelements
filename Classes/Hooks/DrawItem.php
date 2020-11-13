@@ -33,7 +33,7 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
     {
 
         // get all list items including all assets
-        if ($row['listelements']) {
+        if ($row['list']) {
             \B13\Listelements\Service\ListService::resolveListitems($row);
         }
 
