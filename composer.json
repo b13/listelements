@@ -7,7 +7,7 @@
 	],
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "picture"
+			"extension-key": "listelements"
 		}
 	},
 	"autoload": {
