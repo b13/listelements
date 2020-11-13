@@ -5,6 +5,11 @@
 	"license": [
 		"MIT"
 	],
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "picture"
+		}
+	},
 	"autoload": {
 		"psr-4": {
 			"B13\\Listelements\\": "Classes/"
