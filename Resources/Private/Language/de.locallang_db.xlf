@@ -35,6 +35,10 @@
 				<source>Layout</source>
 				<target>Layout</target>
 			</trans-unit>
+			<trans-unit id="listitems.text" res_name="listitems.text">
+				<source>Text</source>
+				<target>Text</target>
+			</trans-unit>
 			<trans-unit id="listitems.bodytext">
 				<source>Text</source>
 				<target>Text</target>

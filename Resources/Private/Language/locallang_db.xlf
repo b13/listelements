@@ -28,6 +28,9 @@
 			<trans-unit id="listitems.layout">
 				<source>Layout</source>
 			</trans-unit>
+			<trans-unit id="listitems.text" res_name="listitems.text">
+				<source>Text</source>
+			</trans-unit>
 			<trans-unit id="listitems.bodytext">
 				<source>Text</source>
 			</trans-unit>
