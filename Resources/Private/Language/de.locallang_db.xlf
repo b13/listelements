@@ -7,11 +7,11 @@
 			<authorEmail>typo3@b13.de</authorEmail>
 		</header>
 		<body>
-			<trans-unit id="tt_content.listitems">
+			<trans-unit id="tt_content.list">
 				<source>List Items</source>
 				<target>Listeneinträge</target>
 			</trans-unit>
-			<trans-unit id="tt_content.b13_list_newRecordLinkAddTitle">
+			<trans-unit id="tt_content.list.newRecordLinkAddTitle">
 				<source>Add Item</source>
 				<target>Eintrag hinzufügen</target>
 			</trans-unit>

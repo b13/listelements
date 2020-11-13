@@ -6,8 +6,8 @@ defined('TYPO3_MODE') or die();
  */
 $additionalColumns = [
 	// add field for saving the list of elements for a list or a slider
-	'listelements' => [
-		'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.listelements',
+	'list' => [
+		'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.list',
 		'config' => [
 			'type' => 'inline',
 			'foreign_table' => 'listitems',
@@ -19,7 +19,7 @@ $additionalColumns = [
                 'showRemovedLocalizationRecords' => TRUE,
                 'expandSingle' => TRUE,
                 'newRecordLinkAddTitle' => FALSE,
-                'newRecordLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.listelements_newRecordLinkAddTitle',
+                'newRecordLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.list.newRecordLinkAddTitle',
                 'useSortable' => TRUE,
                 'useCombination' => FALSE
 			],
