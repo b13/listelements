@@ -142,6 +142,16 @@ return [
                 'items' => '',
             ],
         ],
+        'text' => [
+            'l10n_mode' => 'prefixLangTitle',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.text',
+            'config' => [
+                'type' => 'text',
+                'cols' => 80,
+                'rows' => 15,
+                'softref' => 'typolink_tag,images,email[subst],url',
+            ]
+        ],
         'bodytext' => [
             'l10n_mode' => 'prefixLangTitle',
             'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.bodytext',
