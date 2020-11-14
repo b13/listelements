@@ -57,7 +57,7 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
     public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
     {
 
-        // get all list items including all assets/assets2
+        // get all list items (database column 'test_list') including all assets
         if ($row['test_list']) {
             // array &$row, $field = '', $table = 'tt_content', $filereferences = 'assets, additional_assets'
             \B13\Listelements\Service\ListService::resolveListitems($row, 'test_list', 'tt_content');
@@ -68,61 +68,8 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
 }
 ```
 
-## Note on upgrading to version 2
-
-Updating this extension from a v1 you will need to update your database and possibly adjust your TypoScript:
-
-### Updating the database
-
-Version 2 renames the field holding the uid of the parent record from `contentelement` to `uid_foreign` for possible
-uses with other records beside `tt_content`. Install the extension and rename the table column or add the new 
-field and update all records accordingly:
-
-`UPDATE listitems SET uid_foreign = contentelement;`
-
-### Adjusting your TypoScript
-
-If your setup did make changes to the `dataProcessing` configuration provided with earlier versions of this extension
-you might need to change the key in use (from `.21` to `.1421884800`). (This change reduces the risk of changing the
-dataProcessing by mistake).
- 
 ## Important info on configuration
 
 Remember to add the `hiddenpalette` to all `showitems`-configuration for your own content elements to have invisible
 fields like the language uid saved for all list items.
-
-## Additional extensions
-
-There are several extensions that enable additional options and fields:
-
-### EXT:listelements_extended
-
-Extends list functionality to additional fields, alloweing multiple lists for a single content element or adding list
-items to other tables, like `pages`, by adding two fields `fieldname` and `tablename` to all list items.
-
-### EXT:listelements_assets2
-
-Adds a second asset/file field to all list items.
-
-### EXT:listelements_publishdate
-
-Adds starttime/endtime to all list items.
-
-### EXT:listelements_bodytext_rte
-
-Adds a second bodytext field configured for use with an RTE.
-
-## Changelog
-
-### v3.0
-
-* Change dependency to EXT:b13_baseconfig
-
-### v2.0
-
-#### Breaking changes:
-
-* Use `uid_foreign` to reference foreign record uid. This is a more consistent naming when using other record types.
-* Change `dataProcessing` to key `.1421884800`
-
 
