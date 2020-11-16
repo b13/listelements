@@ -67,7 +67,6 @@ class ListService
         $row[$returnAs . '-numberOfVisibleItems'] = $queryBuilder
             ->execute()
             ->fetchColumn(0);
-
         
         foreach($row[$returnAs] as $key => $item) {
             foreach(explode(',', $filereferences) as $fieldname) {
