@@ -206,7 +206,10 @@ return [
                             ],
                         ],
                     ],
-                ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
+                ]
+                // ,
+                // set this if you need it in your content element configuration (use allowedFileExtensions)
+                // $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext']
             ),
         ],
         'assets' => [
@@ -253,7 +256,10 @@ return [
                             ],
                         ],
                     ],
-                ], $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
+                ]
+                // ,
+                // set this if you need it in your content element configuration (use allowedFileExtensions)
+                // $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
             ),
         ],
         'link' => [
