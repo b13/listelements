@@ -21,6 +21,14 @@ lib.contentElement {
 				sorting = sorting_foreign
 				as = listassets
 			}
+			21 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			21 {
+				if.isTrue.field = image
+				references.fieldName = image
+				references.table = listitems
+				sorting = sorting_foreign
+				as = listimages
+			}
 		}
 	}
 }
