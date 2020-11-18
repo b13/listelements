@@ -43,6 +43,12 @@
 			<trans-unit id="listitems.assets.addFileReference">
 				<source>Add Media</source>
 			</trans-unit>
+			<trans-unit id="listitems.image">
+				<source>Images</source>
+			</trans-unit>
+			<trans-unit id="listitems.image.addFileReference">
+				<source>Add Image</source>
+			</trans-unit>
 			<trans-unit id="listitems.link">
 				<source>Link</source>
 			</trans-unit>
