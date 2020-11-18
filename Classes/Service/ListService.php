@@ -26,7 +26,7 @@ class ListService
      * @param string $filereferences: comma separated list of fields with file references
      *
      */
-    public static function resolveListitems(array &$row, $field = '', $table = 'tt_content', $filereferences = 'assets')
+    public static function resolveListitems(array &$row, $field = '', $table = 'tt_content', $filereferences = 'assets,image')
     {
         $returnAs = $field ? 'listitems_' . $field : 'listitems';
         if ($returnAs === 'listitems_listelements') {
