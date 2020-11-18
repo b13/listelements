@@ -162,6 +162,53 @@ return [
                 'softref' => 'typolink_tag,images,email[subst],url',
             ]
         ],
+        'image' => [
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.image',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'image',
+                [
+                    'appearance' => [
+                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.image.addFileReference',
+                    ],
+                    // custom configuration for displaying fields in the overlay/reference table
+                    // to use the imageoverlayPalette instead of the basicoverlayPalette
+                    'overrideChildTca' => [
+                        'types' => [
+                            0 => [
+                                'showitem' => '
+                                --palette--;;basicoverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+                                'showitem' => '
+                                --palette--;;imageoverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+                                'showitem' => '
+                                --palette--;;imageoverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+                                'showitem' => '
+                                --palette--;;audioOverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+                                'showitem' => '
+                                --palette--;;videoOverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                            \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+                                'showitem' => '
+                                --palette--;;basicoverlayPalette,
+                                --palette--;;filePalette',
+                            ],
+                        ],
+                    ],
+                ], $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'])
+            ),
+        ],
         'assets' => [
             'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.assets',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
@@ -206,10 +253,7 @@ return [
                             ],
                         ],
                     ],
-                ]
-                // ,
-                // set this if you need it in your content element configuration (use allowedFileExtensions)
-                // $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
+                ], $GLOBALS['TYPO3_CONF_VARS']['SYS']['mediafile_ext']
             ),
         ],
         'link' => [
