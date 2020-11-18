@@ -20,6 +20,7 @@ CREATE TABLE listitems (
 	layout varchar(255) DEFAULT '' NOT NULL,
 	text mediumtext,
 	bodytext mediumtext,
+	image int(11) unsigned DEFAULT '0' NOT NULL,
 	assets int(11) unsigned DEFAULT '0' NOT NULL,
 	link varchar(1024) DEFAULT '' NOT NULL,
 	linklabel varchar(255) DEFAULT '' NOT NULL,
