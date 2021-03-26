@@ -26,12 +26,14 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
      * @param string $headerContent : The content of the item header
      * @param string $itemContent : The content of the item itself
      * @param array $row : The current data row for this item
-     *
-     * @return void
      */
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
-    {
-
+    public function preProcess(
+        PageLayoutView &$parentObject,
+        &$drawItem,
+        &$headerContent,
+        &$itemContent,
+        &$row
+    ) {
         // get all list items including all assets
         if ($row['list']) {
             \B13\Listelements\Service\ListService::resolveListitems($row);
