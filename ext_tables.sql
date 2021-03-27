@@ -15,6 +15,8 @@ CREATE TABLE listitems (
 	uid_foreign int(11) DEFAULT '0' NOT NULL,
 
 # local usage fields
+	tablename varchar(64) DEFAULT 'tt_content' NOT NULL,
+	fieldname varchar(64) DEFAULT 'list' NOT NULL,
 	header varchar(255) DEFAULT '' NOT NULL,
 	subheader varchar(255) DEFAULT '' NOT NULL,
 	layout varchar(255) DEFAULT '' NOT NULL,
