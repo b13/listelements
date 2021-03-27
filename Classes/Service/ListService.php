@@ -47,13 +47,11 @@ class ListService
                 $queryBuilder->expr()->eq('uid_foreign', $row['uid'])
             );
 
-        if ($field) {
-            $queryBuilder
-                ->andWhere(
-                    $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter($field)),
-                    $queryBuilder->expr()->eq('tablename', $queryBuilder->createNamedParameter($table))
-                );
-        }
+        $queryBuilder
+            ->andWhere(
+                $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter($field)),
+                $queryBuilder->expr()->eq('tablename', $queryBuilder->createNamedParameter($table))
+            );
 
         $row[$returnAs] = $queryBuilder
             ->execute()
