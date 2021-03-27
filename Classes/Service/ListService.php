@@ -59,7 +59,7 @@ class ListService
 
         // count the number of non-hidden list items in case we need this for a backend preview warning, error message etc.
         // saved to $row[$returnAs . '-numberOfVisibleItems']
-                $queryBuilder->getRestrictions()
+        $queryBuilder->getRestrictions()
             ->add(GeneralUtility::makeInstance(HiddenRestriction::class));
         $queryBuilder->count('uid');
 
