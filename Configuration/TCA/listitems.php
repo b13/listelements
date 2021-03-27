@@ -115,6 +115,24 @@ return [
                 'default' => 0,
             ],
         ],
+        'tablename' => [
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:listitems.tablename',
+            'l10n_mode' => 'exclude',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ]
+        ],
+        'fieldname' => [
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:listitems.fieldname',
+            'l10n_mode' => 'exclude',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ]
+        ],
         'header' => [
             'l10n_mode' => 'prefixLangTitle',
             'l10n_cat' => 'text',
