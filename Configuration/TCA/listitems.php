@@ -148,7 +148,7 @@ return [
             'config' => [
                 'type' => 'text',
                 'cols' => 80,
-                'rows' => 15,
+                'rows' => 10,
                 'softref' => 'typolink_tag,images,email[subst],url',
             ]
         ],
@@ -158,8 +158,9 @@ return [
             'config' => [
                 'type' => 'text',
                 'cols' => 80,
-                'rows' => 15,
+                'rows' => 10,
                 'softref' => 'typolink_tag,images,email[subst],url',
+                'enableRichtext' => true
             ]
         ],
         'image' => [
