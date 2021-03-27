@@ -19,6 +19,12 @@
 			<trans-unit id="listitems.sorting_foreign">
 				<source>Sorting</source>
 			</trans-unit>
+			<trans-unit id="listitems.tablename">
+				<source>Reference database table</source>
+			</trans-unit>
+			<trans-unit id="listitems.fieldname">
+				<source>Reference database field</source>
+			</trans-unit>
 			<trans-unit id="listitems.header">
 				<source>Header</source>
 			</trans-unit>
