@@ -23,6 +23,14 @@
 				<source>Sorting</source>
 				<target>Sortierung</target>
 			</trans-unit>
+			<trans-unit id="listitems.tablename">
+				<source>Reference database table</source>
+				<target>Verknüpfung: Datenbanktabelle</target>
+			</trans-unit>
+			<trans-unit id="listitems.fieldname">
+				<source>Reference database field</source>
+				<target>Verknüpfung: Datenbankfeld</target>
+			</trans-unit>
 			<trans-unit id="listitems.header">
 				<source>Header</source>
 				<target>Überschrift</target>
