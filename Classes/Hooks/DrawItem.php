@@ -38,7 +38,6 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
         if ($row['list']) {
             \B13\Listelements\Service\ListService::resolveListitems($row);
         }
-
     }
 
 }
