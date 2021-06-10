@@ -4,7 +4,7 @@ return [
     'ctrl' => [
         'title' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.title',
         'label' => 'header',
-        'label_alt' => 'subheader,bodytext,linklabel',
+        'label_alt' => 'subheader,bodytext,text,linklabel',
         'label_alt_force' => 1,
         'iconfile' => 'EXT:listelements/Resources/Public/Icons/Extension.svg',
         'tstamp' => 'tstamp',
