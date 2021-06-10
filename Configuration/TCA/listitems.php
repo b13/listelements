@@ -34,7 +34,7 @@ return [
         'searchFields' => 'header,subheader,bodytext,link',
     ],
     'interface' => [
-        'showRecordFieldList' => 'hidden,uid_foreign,sorting_foreign,header,subheader,bodytext,link,linklabel,assets',
+        'showRecordFieldList' => 'hidden,uid_foreign,sorting_foreign,header,subheader,bodytext,text,link,linklabel,assets',
     ],
 
     'columns' => [
