@@ -15,75 +15,75 @@
 				<source>Add Item</source>
 				<target>Eintrag hinzufügen</target>
 			</trans-unit>
-			<trans-unit id="listitems.title">
+			<trans-unit id="tx_listelements_item.title">
 				<source>Listitem</source>
 				<target>Listeneinträge</target>
 			</trans-unit>
-			<trans-unit id="listitems.sorting_foreign">
+			<trans-unit id="tx_listelements_item.sorting_foreign">
 				<source>Sorting</source>
 				<target>Sortierung</target>
 			</trans-unit>
-			<trans-unit id="listitems.tablename">
+			<trans-unit id="tx_listelements_item.tablename">
 				<source>Reference database table</source>
 				<target>Verknüpfung: Datenbanktabelle</target>
 			</trans-unit>
-			<trans-unit id="listitems.fieldname">
+			<trans-unit id="tx_listelements_item.fieldname">
 				<source>Reference database field</source>
 				<target>Verknüpfung: Datenbankfeld</target>
 			</trans-unit>
-			<trans-unit id="listitems.header">
+			<trans-unit id="tx_listelements_item.header">
 				<source>Header</source>
 				<target>Überschrift</target>
 			</trans-unit>
-			<trans-unit id="listitems.subheader">
+			<trans-unit id="tx_listelements_item.subheader">
 				<source>Subheader</source>
 				<target>Subheader</target>
 			</trans-unit>
-			<trans-unit id="listitems.layout">
+			<trans-unit id="tx_listelements_item.layout">
 				<source>Layout</source>
 				<target>Layout</target>
 			</trans-unit>
-			<trans-unit id="listitems.text" res_name="listitems.text">
+			<trans-unit id="tx_listelements_item.text" res_name="tx_listelements_item.text">
 				<source>Text</source>
 				<target>Text</target>
 			</trans-unit>
-			<trans-unit id="listitems.bodytext">
+			<trans-unit id="tx_listelements_item.bodytext">
 				<source>Text</source>
 				<target>Text</target>
 			</trans-unit>
-			<trans-unit id="listitems.uid_foreign">
+			<trans-unit id="tx_listelements_item.uid_foreign">
 				<source>Foreign Table Element Reference</source>
 				<target>Tabelle Referenz</target>
 			</trans-unit>
-			<trans-unit id="listitems.assets">
+			<trans-unit id="tx_listelements_item.assets">
 				<source>Media Assets</source>
 				<target>Medien</target>
 			</trans-unit>
-			<trans-unit id="listitems.assets.addFileReference">
+			<trans-unit id="tx_listelements_item.assets.addFileReference">
 				<source>Add Media</source>
 				<target>Medien hinzufügen</target>
 			</trans-unit>
-			<trans-unit id="listitems.image">
+			<trans-unit id="tx_listelements_item.image">
 				<source>Images</source>
 				<target>Bilder</target>
 			</trans-unit>
-			<trans-unit id="listitems.image.addFileReference">
+			<trans-unit id="tx_listelements_item.image.addFileReference">
 				<source>Add Image</source>
 				<target>Bild hinzufügen</target>
 			</trans-unit>
-			<trans-unit id="listitems.link">
+			<trans-unit id="tx_listelements_item.link">
 				<source>Link</source>
 				<target>Link</target>
 			</trans-unit>
-			<trans-unit id="listitems.linklabel">
+			<trans-unit id="tx_listelements_item.linklabel">
 				<source>Label for Link</source>
 				<target>Linktext</target>
 			</trans-unit>
-			<trans-unit id="listitems.linkconfig">
+			<trans-unit id="tx_listelements_item.linkconfig">
 				<source>Type/Configuration of Link</source>
 				<target>Konfiguration für Link</target>
 			</trans-unit>
-            <trans-unit id="listitems.linkconfig.I.0">
+            <trans-unit id="tx_listelements_item.linkconfig.I.0">
                 <source>Default</source>
                 <target>Standard</target>
             </trans-unit>
