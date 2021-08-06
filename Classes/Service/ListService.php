@@ -26,7 +26,7 @@ class ListService
      * @param string $filereferences: comma separated list of fields with file references
      *
      */
-    public static function resolveListitems(array &$row, $field = 'list', $table = 'tt_content', $filereferences = 'assets,image')
+    public static function resolveListitems(array &$row, $field = 'tx_listelements_list', $table = 'tt_content', $filereferences = 'assets,image')
     {
         $returnAs = 'listitems_' . $field;
         if ($returnAs === 'listitems_list') {
@@ -34,14 +34,14 @@ class ListService
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('listitems');
+            ->getQueryBuilderForTable('tx_listelements_items');
         $queryBuilder->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
             ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace));
         $queryBuilder
             ->select('*')
-            ->from('listitems')
+            ->from('tx_listelements_items')
             ->orderBy('sorting_foreign')
             ->where(
                 $queryBuilder->expr()->eq('uid_foreign', $row['uid'])
@@ -73,7 +73,7 @@ class ListService
                 if($item[$fieldname]) {
                     $row[$returnAs][$key]['all' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
                         $fieldname,
-                        'listitems',
+                        'tx_listelements_items',
                         $item['uid']);
                 }
             }

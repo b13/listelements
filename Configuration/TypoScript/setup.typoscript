@@ -2,7 +2,7 @@
 lib.contentElement {
 	dataProcessing.1421884800 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
 	dataProcessing.1421884800 {
-		if.isTrue.field = list
+		if.isTrue.field = tx_listelements_list
 		table = listitems
 		colPos.data = field:colPos
 		pidInList.data = field:pid

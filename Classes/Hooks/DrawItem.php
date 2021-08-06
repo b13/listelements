@@ -14,7 +14,7 @@ use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 
 /**
- * Class/Function to manipulates the rendering of item example content
+ * Class/Function to manipulate the rendering of item preview content
  *
  */
 class DrawItem implements PageLayoutViewDrawItemHookInterface
@@ -35,7 +35,7 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
         &$row
     ) {
         // get all list items including all assets
-        if ($row['list']) {
+        if ($row['tx_listelements_list']) {
             \B13\Listelements\Service\ListService::resolveListitems($row);
         }
     }
