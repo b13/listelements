@@ -29,7 +29,7 @@ class ListService
     public static function resolveListitems(array &$row, $field = 'tx_listelements_list', $table = 'tt_content', $filereferences = 'assets,image')
     {
         $returnAs = 'listitems_' . $field;
-        if ($returnAs === 'listitems_list') {
+        if ($returnAs === 'listitems_tx_listelements_list') {
             $returnAs = 'listitems';
         }
 
