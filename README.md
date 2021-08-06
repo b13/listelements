@@ -2,7 +2,7 @@
 
 ## About this extension
 
-This extension adds list items to tt_content. It adds a database field `b13_list` to `tt_content` that allows adding
+This extension adds list items to tt_content. It adds a database field `list` to `tt_content` that allows adding
 flexible list items as IRRE records to any content element.
 
 ## Installation
