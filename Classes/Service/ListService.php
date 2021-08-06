@@ -34,14 +34,14 @@ class ListService
         }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_listelements_items');
+            ->getQueryBuilderForTable('tx_listelements_item');
         $queryBuilder->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
             ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace));
         $queryBuilder
             ->select('*')
-            ->from('tx_listelements_items')
+            ->from('tx_listelements_item')
             ->orderBy('sorting_foreign')
             ->where(
                 $queryBuilder->expr()->eq('uid_foreign', $row['uid'])
@@ -73,7 +73,7 @@ class ListService
                 if($item[$fieldname]) {
                     $row[$returnAs][$key]['all' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
                         $fieldname,
-                        'tx_listelements_items',
+                        'tx_listelements_item',
                         $item['uid']);
                 }
             }
