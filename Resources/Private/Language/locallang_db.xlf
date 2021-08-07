@@ -49,10 +49,10 @@
 			<trans-unit id="tx_listelements_item.assets.addFileReference">
 				<source>Add Media</source>
 			</trans-unit>
-			<trans-unit id="tx_listelements_item.image">
+			<trans-unit id="tx_listelements_item.images">
 				<source>Images</source>
 			</trans-unit>
-			<trans-unit id="tx_listelements_item.image.addFileReference">
+			<trans-unit id="tx_listelements_item.images.addFileReference">
 				<source>Add Image</source>
 			</trans-unit>
 			<trans-unit id="tx_listelements_item.link">
