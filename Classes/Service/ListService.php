@@ -71,7 +71,7 @@ class ListService
             foreach(explode(',', $filereferences) as $fieldname) {
                 $fieldname = trim($fieldname);
                 if($item[$fieldname]) {
-                    $row[$returnAs][$key]['all' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
+                    $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
                         $fieldname,
                         'tx_listelements_item',
                         $item['uid']);
