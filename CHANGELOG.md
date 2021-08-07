@@ -23,12 +23,19 @@ After updating, make sure to update your project files as follows:
 just in case. Assuming the table `tx_listelements_item` is empty, run the following commands:
 
 ```
+# remove empty new table
 DROP TABLE tx_listelements_item;
+# rename old listitems table
 ALTER TABLE listitems RENAME TO tx_listelements_item;
 
+# update references 
 UPDATE tt_content SET tx_listelements_list = list WHERE list != '';
 UPDATE tx_listelements_item SET fieldname = 'tx_listelements_list' WHERE fieldname = 'list';
 UPDATE sys_file_reference SET tablenames = 'tx_listelements_item' WHERE tablenames = 'listitems';
+
+# rename/update references due to changed fieldname "images" (instead of "image")
+UPDATE tx_listelements_item SET images = image;
+UPDATE sys_file_reference SET fieldname = "images" WHERE fieldname="image" and tablenames = "tx_listelements_item";
 ```
 
 #### Update your TCA of custom elements created
@@ -38,7 +45,9 @@ UPDATE sys_file_reference SET tablenames = 'tx_listelements_item' WHERE tablenam
 * Update custom fields added to the table `listelements` to now be added to `tx_listelements_list`.
 * Update references to LLL labels taken from `EXT:listelements` (if you re-used labels in your TCA/PageTSConfig).
 * Update all references to field `image` of listelements, this field has been renamed to `images` to be more precise 
-  (and in line with `assets`).
+  (and in line with `assets`).\
+  Note that this also applies to all `showitem` configurations as well as `columnsOverrides` 
+  configuration.
   
 #### Update backend preview templates
 
