@@ -32,7 +32,7 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
         &$drawItem,
         &$headerContent,
         &$itemContent,
-        &$row
+        array &$row
     ) {
         // get all list items including all assets
         if ($row['tx_listelements_list']) {
