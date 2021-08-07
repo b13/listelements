@@ -23,8 +23,8 @@ lib.contentElement {
 			}
 			21 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
 			21 {
-				if.isTrue.field = images
-				references.fieldName = images
+				if.isTrue.field = image
+				references.fieldName = image
 				references.table = tx_listelements_item
 				sorting = sorting_foreign
 				as = listimages

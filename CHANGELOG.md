@@ -37,11 +37,8 @@ UPDATE sys_file_reference SET tablenames = 'tx_listelements_item' WHERE tablenam
   applies to palettes created.
 * Update custom fields added to the table `listelements` to now be added to `tx_listelements_list`.
 * Update references to LLL labels taken from `EXT:listelements` (if you re-used labels in your TCA/PageTSConfig).
-* Update all references to field `image` of listelements, this field has been renamed to `images` to be more precise 
-  (and in line with `assets`).
   
 #### Update backend preview templates
 
 The arrays for images and assets file references have been renamed from `allAssets` to `processedAssets`. Update your
 Fluid templates accordingly.
-

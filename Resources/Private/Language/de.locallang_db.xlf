@@ -63,11 +63,11 @@
 				<source>Add Media</source>
 				<target>Medien hinzufügen</target>
 			</trans-unit>
-			<trans-unit id="tx_listelements_item.images">
+			<trans-unit id="tx_listelements_item.image">
 				<source>Images</source>
 				<target>Bilder</target>
 			</trans-unit>
-			<trans-unit id="tx_listelements_item.images.addFileReference">
+			<trans-unit id="tx_listelements_item.image.addFileReference">
 				<source>Add Image</source>
 				<target>Bild hinzufügen</target>
 			</trans-unit>
