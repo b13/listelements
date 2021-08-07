@@ -181,13 +181,13 @@ return [
                 'enableRichtext' => true
             ]
         ],
-        'image' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.image',
+        'images' => [
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'image',
+                'images',
                 [
                     'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.image.addFileReference',
+                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images.addFileReference',
                     ],
                     // custom configuration for displaying fields in the overlay/reference table
                     // to use the imageoverlayPalette instead of the basicoverlayPalette
