@@ -2,8 +2,8 @@
 
 ## About this extension
 
-This extension adds list items to tt_content. It adds a database field `list` to `tt_content` that allows adding
-flexible list items as IRRE records to any content element.
+This extension adds list items to tt_content. It adds a database field `tx_listelements_list` to `tt_content` that 
+allows adding flexible list items as IRRE records to any content element.
 
 ## Installation
 
@@ -39,7 +39,7 @@ use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 
 /**
- * Class/Function which manipulates the rendering of item example content
+ * Class/Function to manipulate the rendering of item preview content
  *
  */
 class DrawItem implements PageLayoutViewDrawItemHookInterface

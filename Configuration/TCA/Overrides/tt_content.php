@@ -6,11 +6,11 @@ defined('TYPO3_MODE') or die();
  */
 $additionalColumns = [
 	// add field for saving the list of elements for a list or a slider
-	'list' => [
+	'tx_listelements_list' => [
 		'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.list',
 		'config' => [
 			'type' => 'inline',
-			'foreign_table' => 'listitems',
+			'foreign_table' => 'tx_listelements_item',
 			'foreign_field' => 'uid_foreign',
 			'appearance' => [
                 'showSynchronizationLink' => FALSE,
