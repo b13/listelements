@@ -51,6 +51,8 @@ UPDATE sys_file_reference SET fieldname = "images" WHERE fieldname="image" and t
   
 #### Update backend preview templates
 
-The arrays for images and assets file references have been renamed from `allAssets` to `processedAssets`. Update your
-Fluid templates accordingly.
+The arrays for images and assets file references have been renamed 
+* from `allAssets` to `processedAssets`
+* from `allImage` to `processedImages`
+Update your Fluid templates accordingly.
 
