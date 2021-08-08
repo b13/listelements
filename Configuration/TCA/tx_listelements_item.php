@@ -2,7 +2,7 @@
 
 return [
     'ctrl' => [
-        'title' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.title',
+        'title' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.title',
         'label' => 'header',
         'label_alt' => 'subheader,bodytext,text,linklabel',
         'label_alt_force' => 1,
@@ -66,8 +66,8 @@ return [
                 'items' => [
                     ['', 0],
                 ],
-                'foreign_table' => 'listitems',
-                'foreign_table_where' => 'AND listitems.uid=###REC_FIELD_l10n_parent### AND listitems.sys_language_uid IN (-1,0)',
+                'foreign_table' => 'tx_listelements_item',
+                'foreign_table_where' => 'AND tx_listelements_item.uid=###REC_FIELD_l10n_parent### AND tx_listelements_item.sys_language_uid IN (-1,0)',
                 'default' => 0,
             ],
         ],
@@ -90,7 +90,7 @@ return [
             ],
         ],
         'uid_foreign' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.title',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.title',
             'config' => [
                 'type' => 'group',
                 'internal_type' => 'db',
@@ -101,7 +101,7 @@ return [
             ],
         ],
         'sorting_foreign' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.sorting_foreign',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.sorting_foreign',
             'config' => [
                 'type' => 'input',
                 'size' => 4,
@@ -116,7 +116,7 @@ return [
             ],
         ],
         'tablename' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:listitems.tablename',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:tx_listelements_item.tablename',
             'l10n_mode' => 'exclude',
             'config' => [
                 'type' => 'input',
@@ -125,7 +125,7 @@ return [
             ]
         ],
         'fieldname' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:listitems.fieldname',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_tca.xlf:tx_listelements_item.fieldname',
             'l10n_mode' => 'exclude',
             'config' => [
                 'type' => 'input',
@@ -136,7 +136,7 @@ return [
         'header' => [
             'l10n_mode' => 'prefixLangTitle',
             'l10n_cat' => 'text',
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.header',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.header',
             'config' => [
                 'type' => 'input',
                 'size' => 50,
@@ -144,7 +144,7 @@ return [
             ],
         ],
         'subheader' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.subheader',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.subheader',
             'config' => [
                 'type' => 'input',
                 'size' => 50,
@@ -153,7 +153,7 @@ return [
             ],
         ],
         'layout' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.layout',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.layout',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -162,7 +162,7 @@ return [
         ],
         'text' => [
             'l10n_mode' => 'prefixLangTitle',
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.text',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.text',
             'config' => [
                 'type' => 'text',
                 'cols' => 80,
@@ -172,7 +172,7 @@ return [
         ],
         'bodytext' => [
             'l10n_mode' => 'prefixLangTitle',
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.bodytext',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.bodytext',
             'config' => [
                 'type' => 'text',
                 'cols' => 80,
@@ -181,13 +181,13 @@ return [
                 'enableRichtext' => true
             ]
         ],
-        'image' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.image',
+        'images' => [
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-                'image',
+                'images',
                 [
                     'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.image.addFileReference',
+                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images.addFileReference',
                     ],
                     // custom configuration for displaying fields in the overlay/reference table
                     // to use the imageoverlayPalette instead of the basicoverlayPalette
@@ -232,12 +232,12 @@ return [
             ),
         ],
         'assets' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.assets',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.assets',
             'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
                 'assets',
                 [
                     'appearance' => [
-                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.assets.addFileReference',
+                        'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.assets.addFileReference',
                     ],
                     // custom configuration for displaying fields in the overlay/reference table
                     // to use the imageoverlayPalette instead of the basicoverlayPalette
@@ -282,7 +282,7 @@ return [
             ),
         ],
         'link' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.link',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.link',
             'config' => [
                 'type' => 'input',
                 'renderType' => 'inputLink',
@@ -291,14 +291,14 @@ return [
                 'eval' => 'trim',
                 'fieldControl' => [
                     'linkPopup' => [
-                        'title' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.link',
+                        'title' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.link',
                     ],
                 ],
                 'softref' => 'typolink',
             ],
         ],
         'linklabel' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.linklabel',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.linklabel',
             'config' => [
                 'type' => 'input',
                 'size' => 50,
@@ -306,7 +306,7 @@ return [
             ],
         ],
         'linkconfig' => [
-            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:listitems.linkconfig',
+            'label' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.linkconfig',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',

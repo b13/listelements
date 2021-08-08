@@ -2,8 +2,8 @@
 lib.contentElement {
 	dataProcessing.1421884800 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
 	dataProcessing.1421884800 {
-		if.isTrue.field = list
-		table = listitems
+		if.isTrue.field = tx_listelements_list
+		table = tx_listelements_item
 		colPos.data = field:colPos
 		pidInList.data = field:pid
 		orderBy = sorting_foreign
@@ -17,15 +17,15 @@ lib.contentElement {
 			10 {
 				if.isTrue.field = assets
 				references.fieldName = assets
-				references.table = listitems
+				references.table = tx_listelements_item
 				sorting = sorting_foreign
 				as = listassets
 			}
 			21 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
 			21 {
-				if.isTrue.field = image
-				references.fieldName = image
-				references.table = listitems
+				if.isTrue.field = images
+				references.fieldName = images
+				references.table = tx_listelements_item
 				sorting = sorting_foreign
 				as = listimages
 			}
