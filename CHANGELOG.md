@@ -34,7 +34,7 @@ UPDATE tx_listelements_item SET fieldname = 'tx_listelements_list' WHERE fieldna
 UPDATE sys_file_reference SET tablenames = 'tx_listelements_item' WHERE tablenames = 'listitems';
 
 # rename/update references due to changed fieldname "images" (instead of "image")
-UPDATE tx_listelements_item SET images = image;
+ALTER TABLE tx_listelements_item RENAME COLUMN image TO images;
 UPDATE sys_file_reference SET fieldname = "images" WHERE fieldname="image" and tablenames = "tx_listelements_item";
 ```
 
