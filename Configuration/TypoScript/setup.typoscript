@@ -8,7 +8,7 @@ lib.contentElement {
 		pidInList.data = field:pid
 		orderBy = sorting_foreign
 		where.data = field:_LOCALIZED_UID // field:uid
-		where.wrap = uid_foreign = |
+		where.wrap = tablename="tt_content" AND fieldname="tx_listelements_list" AND uid_foreign = |
 		languageField = 0
 		as = listitems
 

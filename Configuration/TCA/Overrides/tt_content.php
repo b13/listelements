@@ -13,6 +13,10 @@ $additionalColumns = [
             'type' => 'inline',
             'foreign_table' => 'tx_listelements_item',
             'foreign_field' => 'uid_foreign',
+            'foreign_table_field' => 'tablename',
+            'foreign_match_fields' => [
+                'fieldname' => 'tx_listelements_list',
+            ],
             'appearance' => [
                 'showSynchronizationLink' => false,
                 'showAllLocalizationLink' => true,
