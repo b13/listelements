@@ -16,7 +16,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FilereferenceService
 {
-
     public static function resolveFilereferences($field, $table, $uid)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
@@ -35,8 +34,8 @@ class FilereferenceService
             )
             ->execute()
             ->fetchAll();
-        foreach($return as $key => $reference) {
-            // add the database record for the original/referenced file 
+        foreach ($return as $key => $reference) {
+            // add the database record for the original/referenced file
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_file');
             $queryBuilder->getRestrictions()
@@ -51,7 +50,7 @@ class FilereferenceService
                 ->execute()
                 ->fetchAll();
             $return[$key]['originalFile'] = $originalFile[0];
-            // add the database record for the original file's metadata 
+            // add the database record for the original file's metadata
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_file_metadata');
             $queryBuilder->getRestrictions()
@@ -69,5 +68,4 @@ class FilereferenceService
         }
         return $return;
     }
-
 }

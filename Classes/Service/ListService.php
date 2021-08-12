@@ -24,7 +24,6 @@ class ListService
      * @param string $field: Fieldname used to resolve the reference
      * @param string $table: Name of the table that holds the reference to this list items
      * @param string $filereferences: comma separated list of fields with file references
-     *
      */
     public static function resolveListitems(array &$row, $field = 'tx_listelements_list', $table = 'tt_content', $filereferences = 'assets,images')
     {
@@ -67,17 +66,17 @@ class ListService
             ->execute()
             ->fetchColumn(0);
 
-        foreach($row[$returnAs] as $key => $item) {
-            foreach(explode(',', $filereferences) as $fieldname) {
+        foreach ($row[$returnAs] as $key => $item) {
+            foreach (explode(',', $filereferences) as $fieldname) {
                 $fieldname = trim($fieldname);
-                if($item[$fieldname]) {
+                if ($item[$fieldname]) {
                     $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
                         $fieldname,
                         'tx_listelements_item',
-                        $item['uid']);
+                        $item['uid']
+                    );
                 }
             }
         }
     }
-
 }
