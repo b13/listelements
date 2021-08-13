@@ -2,9 +2,7 @@
 	"name": "b13/listelements",
 	"type": "typo3-cms-extension",
 	"description": "Adds list elements to tt_content",
-	"license": [
-		"MIT"
-	],
+	"license": ["GPL-2.0-or-later"],
 	"extra": {
 		"typo3/cms": {
 			"extension-key": "listelements"
