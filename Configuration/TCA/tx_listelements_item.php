@@ -21,9 +21,6 @@ return [
         'translationSource' => 'l10n_source',
         // records can and should be edited in workspaces
         'shadowColumnsForNewPlaceholders' => 'uid_foreign',
-        'typeicon_classes' => [
-            'default' => 'mimetypes-other-other',
-        ],
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
