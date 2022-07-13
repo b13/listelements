@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Versioning\VersionState;
 
 class ListService
 {
@@ -59,7 +60,7 @@ class ListService
 
         foreach ($row[$returnAs] as $key => $specificRow) {
             BackendUtility::workspaceOL('tx_listelements_item', $specificRow);
-            if ($specificRow !== false) {
+            if ($specificRow !== false && !VersionState::cast($specificRow['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
                 $row[$returnAs][$key] = $specificRow;
             } else {
                 unset($row[$returnAs][$key]);
