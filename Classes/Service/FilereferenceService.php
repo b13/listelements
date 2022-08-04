@@ -12,6 +12,7 @@ namespace B13\Listelements\Service;
 
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class FilereferenceService
@@ -22,6 +23,7 @@ class FilereferenceService
             ->getQueryBuilderForTable('sys_file_reference');
         $queryBuilder->getRestrictions()
             ->removeAll()
+            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace))
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
         $return = $queryBuilder
             ->select('*')
@@ -40,6 +42,7 @@ class FilereferenceService
                 ->getQueryBuilderForTable('sys_file');
             $queryBuilder->getRestrictions()
                 ->removeAll()
+                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace))
                 ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
             $originalFile = $queryBuilder
                 ->select('*')
@@ -55,6 +58,7 @@ class FilereferenceService
                 ->getQueryBuilderForTable('sys_file_metadata');
             $queryBuilder->getRestrictions()
                 ->removeAll()
+                ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace))
                 ->add(GeneralUtility::makeInstance(DeletedRestriction::class));
             $originalFileMetaData = $queryBuilder
                 ->select('*')
