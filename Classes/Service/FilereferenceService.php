@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace B13\Listelements\Service;
 
 /*
@@ -48,8 +50,10 @@ class FilereferenceService
                     $queryBuilder->expr()->eq('uid', $reference['uid_local'])
                 )
                 ->execute()
-                ->fetchAll();
-            $return[$key]['originalFile'] = $originalFile[0];
+                ->fetch();
+            if ($originalFile !== false) {
+                $return[$key]['originalFile'] = $originalFile;
+            }
             // add the database record for the original file's metadata
             $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
                 ->getQueryBuilderForTable('sys_file_metadata');
@@ -63,8 +67,10 @@ class FilereferenceService
                     $queryBuilder->expr()->eq('uid', $reference['uid_local'])
                 )
                 ->execute()
-                ->fetchAll();
-            $return[$key]['originalFileMetaData'] = $originalFileMetaData[0];
+                ->fetch();
+            if ($originalFileMetaData !== false) {
+                $return[$key]['originalFileMetaData'] = $originalFileMetaData;
+            }
         }
         return $return;
     }
