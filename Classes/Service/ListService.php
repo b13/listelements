@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ListService
@@ -68,16 +69,11 @@ class ListService
             ->execute()
             ->fetchColumn(0);
 
+        $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
         foreach ($row[$returnAs] as $key => $item) {
             foreach (explode(',', $filereferences) as $fieldname) {
                 $fieldname = trim($fieldname);
-                if ($item[$fieldname]) {
-                    $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = \B13\Listelements\Service\FilereferenceService::resolveFilereferences(
-                        $fieldname,
-                        'tx_listelements_item',
-                        $item['uid']
-                    );
-                }
+                $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = $fileRepository->findByRelation('tx_listelements_item', $fieldname, $item['uid']);
             }
         }
     }
