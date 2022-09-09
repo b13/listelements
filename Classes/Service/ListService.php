@@ -12,11 +12,13 @@ namespace B13\Listelements\Service;
  * of the License, or any later version.
  */
 
+use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Core\Versioning\VersionState;
 
 class ListService
 {
@@ -57,6 +59,15 @@ class ListService
         $row[$returnAs] = $queryBuilder
             ->execute()
             ->fetchAll();
+
+        foreach ($row[$returnAs] as $key => $specificRow) {
+            BackendUtility::workspaceOL('tx_listelements_item', $specificRow);
+            if ($specificRow !== false && !VersionState::cast($specificRow['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
+                $row[$returnAs][$key] = $specificRow;
+            } else {
+                unset($row[$returnAs][$key]);
+            }
+        }
 
         // count the number of non-hidden list items in case we need this for a backend preview warning, error message etc.
         // saved to $row[$returnAs . '-numberOfVisibleItems']
