@@ -1,6 +1,6 @@
 <?php
 
-defined('TYPO3_MODE') or die();
+defined('TYPO3') or die();
 
 /**
  * add fields to tt_content table
@@ -26,7 +26,7 @@ $additionalColumns = [
                 'newRecordLinkAddTitle' => false,
                 'newRecordLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.list.newRecordLinkAddTitle',
                 'useSortable' => true,
-                'useCombination' => false
+                'useCombination' => false,
             ],
         ],
     ],
