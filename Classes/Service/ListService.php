@@ -36,7 +36,7 @@ class ListService
         if ($returnAs === 'listitems_tx_listelements_list') {
             $returnAs = 'listitems';
         }
-        
+
         $workspace = 0;
         if (isset($GLOBALS['BE_USER']) && isset($GLOBALS['BE_USER']->workspace)) {
             $workspace = $GLOBALS['BE_USER']->workspace;
