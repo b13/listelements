@@ -36,13 +36,18 @@ class ListService
         if ($returnAs === 'listitems_tx_listelements_list') {
             $returnAs = 'listitems';
         }
+        
+        $workspace = 0;
+        if (isset($GLOBALS['BE_USER']) && isset($GLOBALS['BE_USER']->workspace)) {
+            $workspace = $GLOBALS['BE_USER']->workspace;
+        }
 
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_listelements_item');
         $queryBuilder->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
-            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace));
+            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $workspace));
         $queryBuilder
             ->select('*')
             ->from('tx_listelements_item')
