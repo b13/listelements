@@ -13,6 +13,7 @@ namespace B13\Listelements\Service;
  */
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
@@ -37,12 +38,14 @@ class ListService
             $returnAs = 'listitems';
         }
 
+        $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
+
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
             ->getQueryBuilderForTable('tx_listelements_item');
         $queryBuilder->getRestrictions()
             ->removeAll()
             ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
-            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, (int)$GLOBALS['BE_USER']->workspace));
+            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $workspaceId));
         $queryBuilder
             ->select('*')
             ->from('tx_listelements_item')
