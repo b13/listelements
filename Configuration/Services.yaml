@@ -1,0 +1,16 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  B13\Listelements\:
+    resource: '../Classes/*'
+
+  B13\Listelements\Hooks\DrawItem:
+    public: true
+
+  B13\Listelements\Listener\PageContentPreviewRendering:
+    tags:
+      - name: event.listener
+        identifier: 'b13-listelements-page-content-preview-rendering'

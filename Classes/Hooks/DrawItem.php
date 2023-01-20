@@ -12,6 +12,7 @@ namespace B13\Listelements\Hooks;
  * of the License, or any later version.
  */
 
+use B13\Listelements\Service\ListService;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
 
@@ -20,6 +21,12 @@ use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
  */
 class DrawItem implements PageLayoutViewDrawItemHookInterface
 {
+    protected ListService $listService;
+
+    public function __construct(ListService $listService)
+    {
+        $this->listService = $listService;
+    }
 
     /**
      * @param PageLayoutView $parentObject : The parent object that triggered this hook
@@ -37,7 +44,7 @@ class DrawItem implements PageLayoutViewDrawItemHookInterface
     ) {
         // get all list items including all assets
         if ($row['tx_listelements_list'] ?? false) {
-            \B13\Listelements\Service\ListService::resolveListitems($row);
+            $row = $this->listService->resolveListitems($row);
         }
     }
 }

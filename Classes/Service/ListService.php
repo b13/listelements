@@ -19,19 +19,20 @@ use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
 use TYPO3\CMS\Core\Resource\FileRepository;
+use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Versioning\VersionState;
 
-class ListService
+class ListService implements SingletonInterface
 {
-
     /**
      * @param array $row: The current data row for this item
      * @param string $field: Fieldname used to resolve the reference
      * @param string $table: Name of the table that holds the reference to this list items
      * @param string $filereferences: comma separated list of fields with file references
+     * @return array $row: the extend row
      */
-    public static function resolveListitems(array &$row, $field = 'tx_listelements_list', $table = 'tt_content', $filereferences = 'assets,images')
+    public function resolveListitems(array $row, string $field = 'tx_listelements_list', string $table = 'tt_content', string $filereferences = 'assets,images'): array
     {
         $returnAs = 'listitems_' . $field;
         if ($returnAs === 'listitems_tx_listelements_list') {
@@ -62,7 +63,7 @@ class ListService
 
         $row[$returnAs] = $queryBuilder
             ->execute()
-            ->fetchAll();
+            ->fetchAllAssociative();
 
         foreach ($row[$returnAs] as $key => $specificRow) {
             BackendUtility::workspaceOL('tx_listelements_item', $specificRow);
@@ -81,7 +82,7 @@ class ListService
 
         $row[$returnAs . '-numberOfVisibleItems'] = $queryBuilder
             ->execute()
-            ->fetchColumn(0);
+            ->fetchOne();
 
         $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
         foreach ($row[$returnAs] as $key => $item) {
@@ -90,5 +91,6 @@ class ListService
                 $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = $fileRepository->findByRelation('tx_listelements_item', $fieldname, $item['uid']);
             }
         }
+        return $row;
     }
 }
