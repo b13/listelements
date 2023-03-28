@@ -151,7 +151,7 @@ return [
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
-                'items' => '',
+                'items' => [],
             ],
         ],
         'text' => [
