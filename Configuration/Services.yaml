@@ -9,7 +9,8 @@ services:
 
   B13\Listelements\Hooks\DrawItem:
     public: true
-
+  B13\Listelements\DataProcessing\ListItemsDataProcessor:
+    public: true
   B13\Listelements\Listener\PageContentPreviewRendering:
     tags:
       - name: event.listener

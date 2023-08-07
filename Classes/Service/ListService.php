@@ -14,10 +14,15 @@ namespace B13\Listelements\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
+use TYPO3\CMS\Core\Database\Query\Restriction\FrontendRestrictionContainer;
+use TYPO3\CMS\Core\Database\Query\Restriction\FrontendWorkspaceRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
 use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -52,7 +57,10 @@ class ListService implements SingletonInterface
             ->from('tx_listelements_item')
             ->orderBy('sorting_foreign')
             ->where(
-                $queryBuilder->expr()->eq('uid_foreign', $row['uid'])
+                $queryBuilder->expr()->eq(
+                    'uid_foreign',
+                    $queryBuilder->createNamedParameter($row['uid'], Connection::PARAM_INT)
+                )
             );
 
         $queryBuilder
@@ -61,18 +69,21 @@ class ListService implements SingletonInterface
                 $queryBuilder->expr()->eq('tablename', $queryBuilder->createNamedParameter($table))
             );
 
-        $row[$returnAs] = $queryBuilder
+        $items = $queryBuilder
             ->execute()
             ->fetchAllAssociative();
 
-        foreach ($row[$returnAs] as $key => $specificRow) {
-            BackendUtility::workspaceOL('tx_listelements_item', $specificRow);
-            if ($specificRow !== false && !VersionState::cast($specificRow['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
-                $row[$returnAs][$key] = $specificRow;
-            } else {
-                unset($row[$returnAs][$key]);
+        $results = [];
+        foreach ($items as $item) {
+            BackendUtility::workspaceOL('tx_listelements_item', $item);
+            if ($item !== false && !VersionState::cast($item['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
+                $results[] = $item;
             }
         }
+        if ($workspaceId > 0) {
+            $results = $this->resortWorkspaceRows($results);
+        }
+        $row[$returnAs] = $results;
 
         // count the number of non-hidden list items in case we need this for a backend preview warning, error message etc.
         // saved to $row[$returnAs . '-numberOfVisibleItems']
@@ -92,5 +103,59 @@ class ListService implements SingletonInterface
             }
         }
         return $row;
+    }
+
+    protected function resortWorkspaceRows(array $rows): array
+    {
+        $sortings = [];
+        foreach ($rows as $row) {
+            $sortings[] = $row['sorting_foreign'];
+        }
+        array_multisort($sortings, $rows, SORT_ASC, SORT_NUMERIC);
+        return $rows;
+    }
+
+    public function resolveItemsForFrontend(int $uid): array
+    {
+        $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
+
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+            ->getQueryBuilderForTable('tx_listelements_item');
+        $queryBuilder->setRestrictions(GeneralUtility::makeInstance(FrontendRestrictionContainer::class));
+        // do not use FrontendWorkspaceRestriction
+        $queryBuilder->getRestrictions()
+            ->removeByType(FrontendWorkspaceRestriction::class)
+            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $workspaceId));
+        $stm = $queryBuilder
+            ->select('*')
+            ->from('tx_listelements_item')
+            ->orderBy('sorting_foreign')
+            ->where(
+                $queryBuilder->expr()->eq(
+                    'uid_foreign',
+                    $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)
+                ),
+                $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter('tx_listelements_list')),
+                $queryBuilder->expr()->eq('tablename', $queryBuilder->createNamedParameter('tt_content'))
+            )
+            ->execute();
+        if ((GeneralUtility::makeInstance(Typo3Version::class))->getMajorVersion() === 10) {
+            $rows = $stm->fetchAll();
+        } else {
+            $rows = $stm->fetchAllAssociative();
+        }
+        if ($workspaceId > 0) {
+            $items = [];
+            $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
+            foreach ($rows as $row) {
+                $pageRepository->versionOL('tx_listelements_item', $row, true);
+                if ($row !== false) {
+                    $items[] = $row;
+                }
+            }
+            $items = $this->resortWorkspaceRows($items);
+            return $items;
+        }
+        return $rows;
     }
 }
