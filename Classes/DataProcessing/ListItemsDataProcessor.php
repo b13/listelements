@@ -13,11 +13,10 @@ namespace B13\Listelements\DataProcessing;
  */
 
 use B13\Listelements\Service\ListService;
-use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
-use TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor;
+use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
 class ListItemsDataProcessor implements DataProcessorInterface
 {
@@ -35,8 +34,7 @@ class ListItemsDataProcessor implements DataProcessorInterface
         array $contentObjectConfiguration,
         array $processorConfiguration,
         array $processedData
-    ): array
-    {
+    ): array {
         if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
             return $processedData;
         }

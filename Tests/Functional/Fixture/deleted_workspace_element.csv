@@ -1,0 +1,12 @@
+"tt_content"
+,"uid","pid","CType","header","sorting","sys_language_uid","tx_listelements_list","t3ver_oid","t3ver_wsid","t3ver_state"
+,"1","1","header","content element with listitems","256","0","1","0","0","0"
+,"2","1","header","header-listelement-ws","256","0","0","1","1","0"
+"tx_listelements_item"
+,"uid","pid","header","tablename","sorting_foreign","fieldname","uid_foreign","sys_language_uid","t3ver_oid","t3ver_wsid","t3ver_state"
+,"1","1","listitem-header","tt_content","1","tx_listelements_list","1","0","0","0","0"
+,"4","1","listitem-header","tt_content","10","tx_listelements_list","1","0","1","1","2"
+"pages"
+,"uid","pid","title","slug"
+,"1","0","home","/"
+

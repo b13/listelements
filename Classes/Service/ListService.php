@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Versioning\VersionState;
 
 class ListService implements SingletonInterface
 {
-
     private const TABLE = 'tx_listelements_item';
 
     /**
