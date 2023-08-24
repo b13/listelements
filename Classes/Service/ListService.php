@@ -14,10 +14,8 @@ namespace B13\Listelements\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Context\Context;
-use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\Restriction\DeletedRestriction;
-use TYPO3\CMS\Core\Database\Query\Restriction\HiddenRestriction;
-use TYPO3\CMS\Core\Database\Query\Restriction\WorkspaceRestriction;
+use TYPO3\CMS\Core\Database\RelationHandler;
+use TYPO3\CMS\Core\Domain\Repository\PageRepository;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -25,6 +23,9 @@ use TYPO3\CMS\Core\Versioning\VersionState;
 
 class ListService implements SingletonInterface
 {
+
+    private const TABLE = 'tx_listelements_item';
+
     /**
      * @param array $row: The current data row for this item
      * @param string $field: Fieldname used to resolve the reference
@@ -38,59 +39,69 @@ class ListService implements SingletonInterface
         if ($returnAs === 'listitems_tx_listelements_list') {
             $returnAs = 'listitems';
         }
-
-        $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
-
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-            ->getQueryBuilderForTable('tx_listelements_item');
-        $queryBuilder->getRestrictions()
-            ->removeAll()
-            ->add(GeneralUtility::makeInstance(DeletedRestriction::class))
-            ->add(GeneralUtility::makeInstance(WorkspaceRestriction::class, $workspaceId));
-        $queryBuilder
-            ->select('*')
-            ->from('tx_listelements_item')
-            ->orderBy('sorting_foreign')
-            ->where(
-                $queryBuilder->expr()->eq('uid_foreign', $row['uid'])
-            );
-
-        $queryBuilder
-            ->andWhere(
-                $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter($field)),
-                $queryBuilder->expr()->eq('tablename', $queryBuilder->createNamedParameter($table))
-            );
-
-        $row[$returnAs] = $queryBuilder
-            ->execute()
-            ->fetchAllAssociative();
-
-        foreach ($row[$returnAs] as $key => $specificRow) {
-            BackendUtility::workspaceOL('tx_listelements_item', $specificRow);
-            if ($specificRow !== false && !VersionState::cast($specificRow['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
-                $row[$returnAs][$key] = $specificRow;
-            } else {
-                unset($row[$returnAs][$key]);
-            }
-        }
-
-        // count the number of non-hidden list items in case we need this for a backend preview warning, error message etc.
-        // saved to $row[$returnAs . '-numberOfVisibleItems']
-        $queryBuilder->getRestrictions()
-            ->add(GeneralUtility::makeInstance(HiddenRestriction::class));
-        $queryBuilder->count('uid');
-
-        $row[$returnAs . '-numberOfVisibleItems'] = $queryBuilder
-            ->execute()
-            ->fetchOne();
-
         $fileRepository = GeneralUtility::makeInstance(FileRepository::class);
-        foreach ($row[$returnAs] as $key => $item) {
-            foreach (explode(',', $filereferences) as $fieldname) {
-                $fieldname = trim($fieldname);
-                $row[$returnAs][$key]['processed' . ucfirst($fieldname)] = $fileRepository->findByRelation('tx_listelements_item', $fieldname, $item['uid']);
+        $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
+        $relationHandler = GeneralUtility::makeInstance(RelationHandler::class);
+        $relationHandler->setWorkspaceId($workspaceId);
+        $relationHandler->start(
+            '',
+            self::TABLE,
+            '',
+            $row['uid'],
+            'tt_content',
+            BackendUtility::getTcaFieldConfiguration('tt_content', 'tx_listelements_list')
+        );
+        $results = $relationHandler->getFromDB();
+        $results = $results[self::TABLE] ?? [];
+        $items = [];
+        $visibleItems = 0;
+        foreach ($relationHandler->tableArray[self::TABLE] ?? [] as $uid) {
+            if (isset($results[$uid])) {
+                $item = $results[$uid];
+                BackendUtility::workspaceOL(self::TABLE, $item);
+                if ($item !== false && !VersionState::cast($item['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
+                    if ((int)$item['hidden'] === 0) {
+                        $visibleItems++;
+                    }
+                    foreach (explode(',', $filereferences) as $fieldname) {
+                        $item['processed' . ucfirst($fieldname)] = $fileRepository->findByRelation(self::TABLE, $fieldname, $item['uid']);
+                    }
+                    $items[] = $item;
+                }
             }
         }
+        $row[$returnAs] = $items;
+        $row[$returnAs . '-numberOfVisibleItems'] = $visibleItems;
         return $row;
+    }
+
+    public function resolveItemsForFrontend(int $uid): array
+    {
+        $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
+        $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
+        $relationHandler = GeneralUtility::makeInstance(RelationHandler::class);
+        $relationHandler->setWorkspaceId($workspaceId);
+        $relationHandler->additionalWhere[self::TABLE] = $pageRepository->enableFields(self::TABLE);
+        $relationHandler->start(
+            '',
+            self::TABLE,
+            '',
+            $uid,
+            'tt_content',
+            BackendUtility::getTcaFieldConfiguration('tt_content', 'tx_listelements_list')
+        );
+        $results = $relationHandler->getFromDB();
+        $results = $results[self::TABLE] ?? [];
+        $items = [];
+        foreach ($relationHandler->tableArray[self::TABLE] ?? [] as $uid) {
+            if (isset($results[$uid])) {
+                $item = $results[$uid];
+                $pageRepository->versionOL(self::TABLE, $item, true);
+                if ($item !== false) {
+                    $items[] = $item;
+                }
+            }
+        }
+        return $items;
     }
 }
