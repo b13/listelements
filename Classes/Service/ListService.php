@@ -48,8 +48,8 @@ class ListService implements SingletonInterface
             self::TABLE,
             '',
             $row['uid'],
-            'tt_content',
-            BackendUtility::getTcaFieldConfiguration('tt_content', 'tx_listelements_list')
+            $table,
+            BackendUtility::getTcaFieldConfiguration($table, 'tx_listelements_list')
         );
         $results = $relationHandler->getFromDB();
         $results = $results[self::TABLE] ?? [];
