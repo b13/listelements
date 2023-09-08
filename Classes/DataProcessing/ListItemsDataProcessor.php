@@ -43,7 +43,9 @@ class ListItemsDataProcessor implements DataProcessorInterface
             return $processedData;
         }
         $targetVariableName = $cObj->stdWrapValue('as', $processorConfiguration, 'listitems');
-        $items = $this->listService->resolveItemsForFrontend((int)($data['_LOCALIZED_UID'] ?? $data['uid']));
+        $table = $cObj->stdWrapValue('table', $processorConfiguration, 'tt_content');
+        $field = $cObj->stdWrapValue('field', $processorConfiguration, 'tx_listelements_list');
+        $items = $this->listService->resolveItemsForFrontend((int)($data['_LOCALIZED_UID'] ?? $data['uid']), $table, $field);
         $request = $cObj->getRequest();
         $processedRecordVariables = [];
         foreach ($items as $key => $record) {

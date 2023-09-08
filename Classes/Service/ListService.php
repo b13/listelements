@@ -48,7 +48,7 @@ class ListService implements SingletonInterface
             '',
             $row['uid'],
             $table,
-            BackendUtility::getTcaFieldConfiguration($table, 'tx_listelements_list')
+            BackendUtility::getTcaFieldConfiguration($table, $field)
         );
         $results = $relationHandler->getFromDB();
         $results = $results[self::TABLE] ?? [];
@@ -74,7 +74,7 @@ class ListService implements SingletonInterface
         return $row;
     }
 
-    public function resolveItemsForFrontend(int $uid): array
+    public function resolveItemsForFrontend(int $uid, string $table = 'tt_content', $field = 'tx_listelements_list'): array
     {
         $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
@@ -86,8 +86,8 @@ class ListService implements SingletonInterface
             self::TABLE,
             '',
             $uid,
-            'tt_content',
-            BackendUtility::getTcaFieldConfiguration('tt_content', 'tx_listelements_list')
+            $table,
+            BackendUtility::getTcaFieldConfiguration($table, $field)
         );
         $results = $relationHandler->getFromDB();
         $results = $results[self::TABLE] ?? [];

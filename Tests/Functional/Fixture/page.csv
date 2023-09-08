@@ -1,0 +1,7 @@
+"tx_listelements_item"
+,"uid","pid","header","tablename","sorting_foreign","fieldname","uid_foreign"
+,"1","1","listitem-header","pages","1","tx_listelements_list","1"
+"pages"
+,"uid","pid","title","slug","tx_listelements_list"
+,"1","0","home","/","1"
+

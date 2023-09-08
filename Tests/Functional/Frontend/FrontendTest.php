@@ -151,6 +151,25 @@ class FrontendTest extends FunctionalTestCase
     }
 
     /**
+     * @test
+     */
+    public function pageItemIsRendered(): void
+    {
+        $this->importCSVDataSet(__DIR__ . '/../Fixture/page.csv');
+        $this->setUpFrontendRootPage(
+            1,
+            [
+                'constants' => ['EXT:listelements_example/Configuration/TypoScript/constants.typoscript'],
+                'setup' => ['EXT:listelements_example/Configuration/TypoScript/setup_page.typoscript'],
+            ]
+        );
+        $response = $this->executeFrontendSubRequest(new InternalRequest('http://localhost/'));
+        $body = (string)$response->getBody();
+        $body = $this->prepareContent($body);
+        self::assertStringContainsString('listitem-header', $body);
+    }
+
+    /**
      * @param string $string
      * @return string
      */

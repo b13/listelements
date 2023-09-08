@@ -3,11 +3,11 @@
 @import 'EXT:listelements/Configuration/TypoScript/setup.typoscript'
 page = PAGE
 
+lib.contentElement.dataProcessing.1421884800 >
+lib.contentElement.dataProcessing.1421884800 = B13\Listelements\DataProcessing\ListItemsDataProcessor
 tt_content.header {
   templateName = Header
   templateRootPaths.10 = EXT:listelements_example/Resources/Private/Templates
-  dataProcessing.1421884800 >
-  dataProcessing.1421884800 = B13\Listelements\DataProcessing\ListItemsDataProcessor
 }
 
 page.20 < styles.content.get
