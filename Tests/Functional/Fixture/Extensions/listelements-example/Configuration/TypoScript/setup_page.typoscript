@@ -1,0 +1,11 @@
+
+@import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:listelements/Configuration/TypoScript/setup.typoscript'
+page = PAGE
+page.10 = FLUIDTEMPLATE
+page.10 {
+    templateRootPaths.10 = EXT:listelements_example/Resources/Private/Templates
+    templateName = Page
+    dataProcessing.1694100980 = B13\Listelements\DataProcessing\ListItemsDataProcessor
+    dataProcessing.1694100980.table = pages
+}
