@@ -26,5 +26,7 @@ CREATE TABLE tx_listelements_item (
 	assets int(11) unsigned DEFAULT '0' NOT NULL,
 	link varchar(1024) DEFAULT '' NOT NULL,
 	linklabel varchar(255) DEFAULT '' NOT NULL,
-	linkconfig varchar(255) DEFAULT '' NOT NULL
+	linkconfig varchar(255) DEFAULT '' NOT NULL,
+
+    KEY commonqueryindex (tablename, fieldname, uid_foreign)
 );
