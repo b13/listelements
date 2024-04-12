@@ -28,7 +28,5 @@ CREATE TABLE tx_listelements_item (
 	linklabel varchar(255) DEFAULT '' NOT NULL,
 	linkconfig varchar(255) DEFAULT '' NOT NULL,
 
-    KEY tablename (tablename),
-    KEY fieldname (fieldname),
-    KEY uid_foreign (uid_foreign)
+    KEY commonqueryindex (tablename, fieldname, uid_foreign)
 );
