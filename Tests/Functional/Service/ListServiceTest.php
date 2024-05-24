@@ -121,7 +121,7 @@ class ListServiceTest extends FunctionalTestCase
             ->where(
                 $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
             )
-            ->execute()
+            ->executeQuery()
             ->fetchAssociative();
     }
 

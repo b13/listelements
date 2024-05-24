@@ -1,17 +1,7 @@
 # add dataProcessing for list items to the default lib.contentElement
 lib.contentElement {
-	dataProcessing.1421884800 = TYPO3\CMS\Frontend\DataProcessing\DatabaseQueryProcessor
+	dataProcessing.1421884800 = B13\Listelements\DataProcessing\ListItemsDataProcessor
 	dataProcessing.1421884800 {
-		if.isTrue.field = tx_listelements_list
-		table = tx_listelements_item
-		colPos.data = field:colPos
-		pidInList.data = field:pid
-		orderBy = sorting_foreign
-		where.data = field:_LOCALIZED_UID // field:uid
-		where.wrap = tablename="tt_content" AND fieldname="tx_listelements_list" AND uid_foreign = |
-		languageField = 0
-		as = listitems
-
 		dataProcessing {
 			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
 			10 {

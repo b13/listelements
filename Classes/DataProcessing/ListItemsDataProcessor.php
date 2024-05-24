@@ -50,7 +50,8 @@ class ListItemsDataProcessor implements DataProcessorInterface
         $processedRecordVariables = [];
         foreach ($items as $key => $record) {
             $recordContentObjectRenderer = GeneralUtility::makeInstance(ContentObjectRenderer::class);
-            $recordContentObjectRenderer->start($record, 'tx_listelements_item', $request);
+            $recordContentObjectRenderer->setRequest($request);
+            $recordContentObjectRenderer->start($record, 'tx_listelements_item');
             $processedRecordVariables[$key] = ['data' => $record];
             $processedRecordVariables[$key] = $this->contentDataProcessor->process($recordContentObjectRenderer, $processorConfiguration, $processedRecordVariables[$key]);
         }
