@@ -14,8 +14,10 @@ namespace B13\Listelements\Service;
 
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\RelationHandler;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
+use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileRepository;
 use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -58,7 +60,7 @@ class ListService implements SingletonInterface
             if (isset($results[$uid])) {
                 $item = $results[$uid];
                 BackendUtility::workspaceOL(self::TABLE, $item);
-                if ($item !== false && !VersionState::cast($item['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER)) {
+                if ($item !== false && !$this->isDeletePlaceHolder($item)) {
                     if ((int)$item['hidden'] === 0) {
                         $visibleItems++;
                     }
@@ -74,13 +76,33 @@ class ListService implements SingletonInterface
         return $row;
     }
 
+    protected function isDeletePlaceHolder(array $item): bool
+    {
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 13) {
+            return VersionState::cast($item['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER);
+        }
+        return VersionState::tryFrom($item['t3ver_state'] ?? 0) === VersionState::DELETE_PLACEHOLDER;
+    }
+
     public function resolveItemsForFrontend(int $uid, string $table = 'tt_content', $field = 'tx_listelements_list'): array
     {
         $workspaceId = GeneralUtility::makeInstance(Context::class)->getAspect('workspace')->getId();
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         $relationHandler = GeneralUtility::makeInstance(RelationHandler::class);
         $relationHandler->setWorkspaceId($workspaceId);
-        $relationHandler->additionalWhere[self::TABLE] = $pageRepository->enableFields(self::TABLE);
+        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 13) {
+            $additionalWhere = $pageRepository->enableFields(self::TABLE);
+        } else {
+            $constraints = $pageRepository->getDefaultConstraints(self::TABLE);
+            if ($constraints === []) {
+                $additionalWhere = '';
+            }
+            $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable($table)
+                ->expr();
+            $additionalWhere = ' AND ' . $expressionBuilder->and(...$constraints);
+        }
+        $relationHandler->additionalWhere[self::TABLE] = $additionalWhere;
         $relationHandler->start(
             '',
             self::TABLE,

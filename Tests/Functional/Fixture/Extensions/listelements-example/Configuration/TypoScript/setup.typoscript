@@ -1,14 +1,12 @@
 
 @import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
 @import 'EXT:listelements/Configuration/TypoScript/setup.typoscript'
-page = PAGE
 
-lib.contentElement.dataProcessing.1421884800 >
-lib.contentElement.dataProcessing.1421884800 = B13\Listelements\DataProcessing\ListItemsDataProcessor
 tt_content.header {
   templateName = Header
   templateRootPaths.10 = EXT:listelements_example/Resources/Private/Templates
 }
 
+page = PAGE
 page.20 < styles.content.get
 page.20.wrap = <div id="listelements-start"></div>|<div id="listelements-end"></div>

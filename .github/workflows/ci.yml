@@ -6,6 +6,9 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        TYPO3: [ '11' , '12', '13' ]
 
     steps:
       - name: Checkout
@@ -14,7 +17,7 @@ jobs:
       - name: Set up PHP Version
         uses: shivammathur/setup-php@v2
         with:
-          php-version: 8.1
+          php-version: 8.3
           tools: composer:v2
 
       - name: Start MySQL
@@ -29,12 +32,27 @@ jobs:
           path: ~/.composer/cache
           key: dependencies-composer-${{ hashFiles('composer.json') }}
 
-      - name: Install composer dependencies
+      - name: Install composer dependencies TYPO3 13
+        if: matrix.TYPO3 == '13'
         run: |
-          composer install --no-progress
-
-      - name: Phpstan
+          composer install --no-progress --no-interaction
+      - name: Install composer dependencies TYPO3 12
+        if: matrix.TYPO3 == '12'
+        run: |
+          composer require typo3/cms-core:^12.4 --no-progress --no-interaction --dev -W
+      - name: Install composer dependencies TYPO3 11
+        if: matrix.TYPO3 == '11'
+        run: |
+          composer require typo3/cms-core:^11.5 --no-progress --no-interaction --dev -W
+      - name: Phpstan 13
+        if: matrix.TYPO3 == '13'
         run: .Build/bin/phpstan analyze -c Build/phpstan.neon
+      - name: Phpstan 12
+        if: matrix.TYPO3 == '12'
+        run: .Build/bin/phpstan analyze -c Build/phpstan12.neon
+      - name: Phpstan 11
+        if: matrix.TYPO3 == '11'
+        run: .Build/bin/phpstan analyze -c Build/phpstan11.neon
       - name: Phpcsfix
         run: .Build/bin/php-cs-fixer fix --config=Build/php-cs-fixer.php --dry-run --stop-on-violation --using-cache=no
       - name: Functional Tests
