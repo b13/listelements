@@ -21,6 +21,7 @@ return [
         'enablecolumns' => [
             'disabled' => 'hidden',
         ],
+        'typeicon_classes' => ['default' => 'tx-listelements-item'],
         'security' => [
             'ignoreWebMountRestriction' => true,
             'ignoreRootLevelRestriction' => true,
