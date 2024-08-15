@@ -1,0 +1,24 @@
+# add dataProcessing for list items to the default lib.contentElement
+lib.contentElement {
+	dataProcessing.1421884800 = B13\Listelements\DataProcessing\ListItemsDataProcessor
+	dataProcessing.1421884800 {
+		dataProcessing {
+			10 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			10 {
+				if.isTrue.field = assets
+				references.fieldName = assets
+				references.table = tx_listelements_item
+				sorting = sorting_foreign
+				as = listassets
+			}
+			21 = TYPO3\CMS\Frontend\DataProcessing\FilesProcessor
+			21 {
+				if.isTrue.field = images
+				references.fieldName = images
+				references.table = tx_listelements_item
+				sorting = sorting_foreign
+				as = listimages
+			}
+		}
+	}
+}
