@@ -163,6 +163,7 @@ return [
                 'appearance' => [
                     'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images.addFileReference',
                 ],
+                'allowed' => 'common-image-types',
             ],
         ],
         'assets' => [
