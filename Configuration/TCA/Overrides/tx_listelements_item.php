@@ -9,27 +9,27 @@ defined('TYPO3') or die();
                             --palette--;;basicoverlayPalette,
                             --palette--;;filePalette',
         ],
-        \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT => [
+        (enum_exists(\TYPO3\CMS\Core\Resource\FileType::class) ? \TYPO3\CMS\Core\Resource\FileType::TEXT->value : \TYPO3\CMS\Core\Resource\File::FILETYPE_TEXT) => [
             'showitem' => '
                             --palette--;;imageoverlayPalette,
                             --palette--;;filePalette',
         ],
-        \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE => [
+        (enum_exists(\TYPO3\CMS\Core\Resource\FileType::class) ? \TYPO3\CMS\Core\Resource\FileType::IMAGE->value : \TYPO3\CMS\Core\Resource\File::FILETYPE_IMAGE) => [
             'showitem' => '
                             --palette--;;imageoverlayPalette,
                             --palette--;;filePalette',
         ],
-        \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO => [
+        (enum_exists(\TYPO3\CMS\Core\Resource\FileType::class) ? \TYPO3\CMS\Core\Resource\FileType::AUDIO->value : \TYPO3\CMS\Core\Resource\File::FILETYPE_AUDIO) => [
             'showitem' => '
                             --palette--;;audioOverlayPalette,
                             --palette--;;filePalette',
         ],
-        \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO => [
+        (enum_exists(\TYPO3\CMS\Core\Resource\FileType::class) ? \TYPO3\CMS\Core\Resource\FileType::VIDEO->value : \TYPO3\CMS\Core\Resource\File::FILETYPE_VIDEO) => [
             'showitem' => '
                             --palette--;;videoOverlayPalette,
                             --palette--;;filePalette',
         ],
-        \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION => [
+        (enum_exists(\TYPO3\CMS\Core\Resource\FileType::class) ? \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value : \TYPO3\CMS\Core\Resource\File::FILETYPE_APPLICATION) => [
             'showitem' => '
                             --palette--;;basicoverlayPalette,
                             --palette--;;filePalette',
