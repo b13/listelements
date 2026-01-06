@@ -7,8 +7,8 @@
   ],
   "require": {
     "php": "^7.4 || ~8.0",
-    "typo3/cms-backend": "^11.5 || ^12.4 || ^13.1",
-    "typo3/cms-fluid-styled-content": "^11.5 || ^12.4 || ^13.1"
+    "typo3/cms-backend": "^11.5 || ^12.4 || ^13.1 || ^14.0",
+    "typo3/cms-fluid-styled-content": "^11.5 || ^12.4 || ^13.1 || ^14.0"
   },
   "extra": {
     "typo3/cms": {
@@ -22,8 +22,8 @@
   "prefer-stable": true,
   "require-dev": {
     "typo3/testing-framework": "^7.0 || ^8.0",
-    "typo3/cms-frontend": "^11.5 || ^12.4 || ^13.1",
-    "typo3/cms-workspaces": "^11.5 || ^12.4 || ^13.1",
+    "typo3/cms-frontend": "^11.5 || ^12.4 || ^13.1 || ^14.0",
+    "typo3/cms-workspaces": "^11.5 || ^12.4 || ^13.1 || ^14.0",
     "saschaegerer/phpstan-typo3": "^1.8",
     "typo3/coding-standards": "^0.5.5",
     "b13/listelements-example": "*"

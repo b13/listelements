@@ -50,7 +50,7 @@ class ListService implements SingletonInterface
             '',
             $row['uid'],
             $table,
-            BackendUtility::getTcaFieldConfiguration($table, $field)
+            $GLOBALS['TCA'][$table]['columns'][$field]['config']
         );
         $results = $relationHandler->getFromDB();
         $results = $results[self::TABLE] ?? [];
@@ -109,7 +109,7 @@ class ListService implements SingletonInterface
             '',
             $uid,
             $table,
-            BackendUtility::getTcaFieldConfiguration($table, $field)
+            $GLOBALS['TCA'][$table]['columns'][$field]['config']
         );
         $results = $relationHandler->getFromDB();
         $results = $results[self::TABLE] ?? [];
