@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Parameter \\#1 \\$record of method TYPO3\\\\CMS\\\\Backend\\\\View\\\\Event\\\\PageContentPreviewRenderingEvent\\:\\:setRecord\\(\\) expects TYPO3\\\\CMS\\\\Core\\\\Domain\\\\RecordInterface, array given\\.$#"
+			count: 1
+			path: ../Classes/Listener/PageContentPreviewRendering.php
+
+		-
+			message: "#^Parameter \\#1 \\$row of method B13\\\\Listelements\\\\Service\\\\ListService\\:\\:resolveListitems\\(\\) expects array, TYPO3\\\\CMS\\\\Core\\\\Domain\\\\RecordInterface given\\.$#"
+			count: 1
+			path: ../Classes/Listener/PageContentPreviewRendering.php
+
+		-
+			message: "#^Call to an undefined method TYPO3\\\\CMS\\\\Core\\\\Domain\\\\Repository\\\\PageRepository\\:\\:enableFields\\(\\)\\.$#"
+			count: 1
+			path: ../Classes/Service/ListService.php
+
+		-
+			message: "#^Call to an undefined static method TYPO3\\\\CMS\\\\Core\\\\Versioning\\\\VersionState\\:\\:cast\\(\\)\\.$#"
+			count: 1
+			path: ../Classes/Service/ListService.php

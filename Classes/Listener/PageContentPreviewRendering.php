@@ -14,6 +14,7 @@ namespace B13\Listelements\Listener;
 
 use B13\Listelements\Service\ListService;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Information\Typo3Version;
 
 class PageContentPreviewRendering
 {
@@ -26,6 +27,9 @@ class PageContentPreviewRendering
 
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
+        if ((new Typo3Version())->getMajorVersion() > 13) {
+            return;
+        }
         $record = $event->getRecord();
         if ($record['tx_listelements_list'] ?? false) {
             $record = $this->listService->resolveListitems($record);

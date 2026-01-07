@@ -24,48 +24,49 @@ content element's Fluid template, like this:
 
 ## Backend PageLayoutView preview
 
-This extension adds a Hook and a Service class to allow customized display using Fluid templates for the backend Page
-Layout View. Use this to add customized preview data if you add additional assets/image fields to be resolved for 
-backend preview:
+This extension adds a PageContentPreviewRendering Listener to resolve ListItems (and if needed further Relations to asses/images) to allow customized display using Fluid templates for the backend Page
+Layout View. 
 
-`EXT:site_extension/Classes/Hooks/DrawItem.php`:
+For TYPO3 Version > 12 the Listener is not required anymore, because TYPO3 use the Record Api to resolve relations automatically.
 
+For TYPO3 Version > 13 the Listener is not used anymore (because the Event changed)
+
+s. https://docs.typo3.org/c/typo3/cms-core/main/en-us/Changelog/14.0/Breaking-92434-UseRecordAPIInPageModulePreviewRendering.html
+
+Migrate or BE-Templates
+
+old:
+
+```html
+<ul>
+	<f:for each="{listitems}" as="item">
+		<li>
+			{item.header}
+			<f:if condition="{item.processedImages}">
+				<f:for each="{item.processedImages}" as="image">
+					<f:image src="{image.uid}" treatIdAsReference="true"/>
+				</f:for>
+			</f:if>
+		</li>
+	</f:for>
+</ul>
 ```
-<?php
 
-namespace B13\SiteExtension\Hooks;
+new:
 
-use TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface;
-use TYPO3\CMS\Backend\View\PageLayoutView;
-
-/**
- * Class/Function to manipulate the rendering of item preview content
- *
- */
-class DrawItem implements PageLayoutViewDrawItemHookInterface
-{
-
-    /**
-     * @param PageLayoutView $parentObject : The parent object that triggered this hook
-     * @param boolean $drawItem : A switch to tell the parent object, if the item still must be drawn
-     * @param string $headerContent : The content of the item header
-     * @param string $itemContent : The content of the item itself
-     * @param array $row : The current data row for this item
-     *
-     * @return void
-     */
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
-    {
-
-        // get all list items (database column 'test_list') including all assets
-        if ($row['test_list']) {
-            // array &$row, $field = '', $table = 'tt_content', $filereferences = 'assets, additional_assets'
-            \B13\Listelements\Service\ListService::resolveListitems($row, 'test_list', 'tt_content');
-        }
-
-    }
-
-}
+```html
+<ul>
+    <f:for each="{record.tx_listelements_list}" as="item">
+        <li>
+            {item.header}
+            <f:if condition="{item.images}">
+                <f:for each="{item.images}" as="image">
+                    <f:image src="{image.uid}" treatIdAsReference="true"/>
+                </f:for>
+            </f:if>
+        </li>
+    </f:for>
+</ul>
 ```
 
 ## Important info on configuration
