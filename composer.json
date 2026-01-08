@@ -21,11 +21,12 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require-dev": {
-    "typo3/testing-framework": "^7.0 || ^8.0",
+    "typo3/testing-framework": "^7.0 || ^8.0 || ^9.1",
     "typo3/cms-frontend": "^11.5 || ^12.4 || ^13.1 || ^14.0",
     "typo3/cms-workspaces": "^11.5 || ^12.4 || ^13.1 || ^14.0",
-    "saschaegerer/phpstan-typo3": "^1.8",
+    "phpstan/phpstan": "^1.10",
     "typo3/coding-standards": "^0.5.5",
+    "phpunit/phpunit": "9.6 || ^10.5 || ^11.3",
     "b13/listelements-example": "*"
   },
   "autoload-dev": {

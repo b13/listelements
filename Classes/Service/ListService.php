@@ -36,6 +36,7 @@ class ListService implements SingletonInterface
      */
     public function resolveListitems(array $row, string $field = 'tx_listelements_list', string $table = 'tt_content', string $filereferences = 'assets,images'): array
     {
+        // used for BE in TYPO3 < 14
         $returnAs = 'listitems_' . $field;
         if ($returnAs === 'listitems_tx_listelements_list') {
             $returnAs = 'listitems';
@@ -96,11 +97,12 @@ class ListService implements SingletonInterface
             $constraints = $pageRepository->getDefaultConstraints(self::TABLE);
             if ($constraints === []) {
                 $additionalWhere = '';
+            } else {
+                $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                    ->getQueryBuilderForTable($table)
+                    ->expr();
+                $additionalWhere = ' AND ' . $expressionBuilder->and(...$constraints);
             }
-            $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                ->getQueryBuilderForTable($table)
-                ->expr();
-            $additionalWhere = ' AND ' . $expressionBuilder->and(...$constraints);
         }
         $relationHandler->additionalWhere[self::TABLE] = $additionalWhere;
         $relationHandler->start(
