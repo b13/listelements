@@ -16,7 +16,6 @@ $additionalColumns = [
                 'showSynchronizationLink' => false,
                 'showAllLocalizationLink' => true,
                 'showPossibleLocalizationRecords' => true,
-                'showRemovedLocalizationRecords' => true,
                 'expandSingle' => true,
                 'newRecordLinkAddTitle' => false,
                 'newRecordLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tt_content.list.newRecordLinkAddTitle',

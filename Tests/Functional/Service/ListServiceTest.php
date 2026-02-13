@@ -13,6 +13,7 @@ namespace B13\Listelements\Tests\Functional\Service;
  */
 
 use B13\Listelements\Service\ListService;
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\CMS\Core\Authentication\BackendUserAuthentication;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Context\WorkspaceAspect;
@@ -37,9 +38,7 @@ class ListServiceTest extends FunctionalTestCase
         'listelements',
     ];
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itemIsFound(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/single_element.csv');
@@ -51,9 +50,7 @@ class ListServiceTest extends FunctionalTestCase
         self::assertSame('listitem-header', $row['listitems'][0]['header']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function workspaceItemIsFoundInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -67,9 +64,7 @@ class ListServiceTest extends FunctionalTestCase
         self::assertSame('header-listelement-ws', $row['listitems'][0]['header']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function liveItemIsFoundInNonWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -82,9 +77,7 @@ class ListServiceTest extends FunctionalTestCase
         self::assertSame('listitem-header', $row['listitems'][0]['header']);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deletedWorkspaceItemsAreNotListedInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -96,9 +89,7 @@ class ListServiceTest extends FunctionalTestCase
         self::assertSame(0, count($row['listitems']));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function workspaceItemsHasCorrectOrderInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');

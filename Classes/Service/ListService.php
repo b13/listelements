@@ -17,13 +17,11 @@ use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\RelationHandler;
 use TYPO3\CMS\Core\Domain\Repository\PageRepository;
-use TYPO3\CMS\Core\Information\Typo3Version;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\SingletonInterface;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Versioning\VersionState;
 
-class ListService implements SingletonInterface
+class ListService
 {
     private const TABLE = 'tx_listelements_item';
 
@@ -79,9 +77,6 @@ class ListService implements SingletonInterface
 
     protected function isDeletePlaceHolder(array $item): bool
     {
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 13) {
-            return VersionState::cast($item['t3ver_state'] ?? 0)->equals(VersionState::DELETE_PLACEHOLDER);
-        }
         return VersionState::tryFrom($item['t3ver_state'] ?? 0) === VersionState::DELETE_PLACEHOLDER;
     }
 
@@ -91,18 +86,14 @@ class ListService implements SingletonInterface
         $pageRepository = GeneralUtility::makeInstance(PageRepository::class);
         $relationHandler = GeneralUtility::makeInstance(RelationHandler::class);
         $relationHandler->setWorkspaceId($workspaceId);
-        if (GeneralUtility::makeInstance(Typo3Version::class)->getMajorVersion() < 13) {
-            $additionalWhere = $pageRepository->enableFields(self::TABLE);
+        $constraints = $pageRepository->getDefaultConstraints(self::TABLE);
+        if ($constraints === []) {
+            $additionalWhere = '';
         } else {
-            $constraints = $pageRepository->getDefaultConstraints(self::TABLE);
-            if ($constraints === []) {
-                $additionalWhere = '';
-            } else {
-                $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
-                    ->getQueryBuilderForTable($table)
-                    ->expr();
-                $additionalWhere = ' AND ' . $expressionBuilder->and(...$constraints);
-            }
+            $expressionBuilder = GeneralUtility::makeInstance(ConnectionPool::class)
+                ->getQueryBuilderForTable($table)
+                ->expr();
+            $additionalWhere = ' AND ' . $expressionBuilder->and(...$constraints);
         }
         $relationHandler->additionalWhere[self::TABLE] = $additionalWhere;
         $relationHandler->start(

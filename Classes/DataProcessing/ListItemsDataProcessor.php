@@ -13,20 +13,17 @@ namespace B13\Listelements\DataProcessing;
  */
 
 use B13\Listelements\Service\ListService;
+use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentDataProcessor;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 
+#[Autoconfigure(public: true)]
 class ListItemsDataProcessor implements DataProcessorInterface
 {
-    protected ListService $listService;
-    protected ContentDataProcessor $contentDataProcessor;
-
-    public function __construct(ListService $listService, ContentDataProcessor $contentDataProcessor)
+    public function __construct(protected ListService $listService, protected ContentDataProcessor $contentDataProcessor)
     {
-        $this->listService = $listService;
-        $this->contentDataProcessor = $contentDataProcessor;
     }
 
     public function process(

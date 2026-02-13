@@ -27,7 +27,6 @@ return [
             'ignoreRootLevelRestriction' => true,
             'ignorePageTypeRestriction' => true,
         ],
-        'searchFields' => 'header,subheader,bodytext,link',
     ],
 
     'columns' => [
@@ -164,6 +163,40 @@ return [
                     'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.images.addFileReference',
                 ],
                 'allowed' => 'common-image-types',
+                'overrideChildTca' => [
+                    'types' => [
+                        0 => [
+                            'showitem' => '
+                            --palette--;;basicoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::TEXT->value => [
+                            'showitem' => '
+                            --palette--;;imageoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::IMAGE->value => [
+                            'showitem' => '
+                            --palette--;;imageoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::AUDIO->value => [
+                            'showitem' => '
+                            --palette--;;audioOverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::VIDEO->value => [
+                            'showitem' => '
+                            --palette--;;videoOverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value => [
+                            'showitem' => '
+                            --palette--;;basicoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                    ],
+                ],
             ],
         ],
         'assets' => [
@@ -172,6 +205,40 @@ return [
                 'type' => 'file',
                 'appearance' => [
                     'createNewRelationLinkTitle' => 'LLL:EXT:listelements/Resources/Private/Language/locallang_db.xlf:tx_listelements_item.assets.addFileReference',
+                ],
+                'overrideChildTca' => [
+                    'types' => [
+                        0 => [
+                            'showitem' => '
+                            --palette--;;basicoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::TEXT->value => [
+                            'showitem' => '
+                            --palette--;;imageoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::IMAGE->value => [
+                            'showitem' => '
+                            --palette--;;imageoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::AUDIO->value => [
+                            'showitem' => '
+                            --palette--;;audioOverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::VIDEO->value => [
+                            'showitem' => '
+                            --palette--;;videoOverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                        \TYPO3\CMS\Core\Resource\FileType::APPLICATION->value => [
+                            'showitem' => '
+                            --palette--;;basicoverlayPalette,
+                            --palette--;;filePalette',
+                        ],
+                    ],
                 ],
             ],
         ],

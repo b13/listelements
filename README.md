@@ -22,6 +22,33 @@ content element's Fluid template, like this:
 </f:for>
 ```
 
+### alternative: record-transformation dataProcessing
+
+if you use record-transformation dataProcessing for your content-elements the EXT:listelements Site-Set (the TypoScript) is not required
+you can do
+
+    tt_content.<my-ce>.dataProcessing.10 = record-transformation
+
+then you have adapt your templates, e.g.
+
+```
+<f:for each="{record.tx_listelements_list}" as="item">
+    ...    
+</f:for>
+```
+
+and also the items self, e.g.
+
+    {item.header}
+    {item.images}
+
+instead of
+
+    {item.data.header}
+    {item.listimages}
+
+s. https://docs.typo3.org/m/typo3/reference-typoscript/main/en-us/DataProcessing/RecordTransformationProcessor.html
+
 ## Backend PageLayoutView preview
 
 This extension adds a PageContentPreviewRendering Listener to resolve ListItems (and if needed further Relations to asses/images) to allow customized display using Fluid templates for the backend Page
