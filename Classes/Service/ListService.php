@@ -111,7 +111,7 @@ class ListService
             if (isset($results[$uid])) {
                 $item = $results[$uid];
                 $pageRepository->versionOL(self::TABLE, $item, true);
-                if ($item !== false) {
+                if (isset($item['uid'])) {
                     $items[] = $item;
                 }
             }

@@ -20,9 +20,7 @@ use TYPO3\CMS\Core\Information\Typo3Version;
 #[AsEventListener(identifier: 'b13-listelements-page-content-preview-rendering')]
 class PageContentPreviewRendering
 {
-    public function __construct(protected ListService $listService)
-    {
-    }
+    public function __construct(protected ListService $listService) {}
 
     public function __invoke(PageContentPreviewRenderingEvent $event): void
     {
