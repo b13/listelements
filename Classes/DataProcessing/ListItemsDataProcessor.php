@@ -22,9 +22,7 @@ use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
 #[Autoconfigure(public: true)]
 class ListItemsDataProcessor implements DataProcessorInterface
 {
-    public function __construct(protected ListService $listService, protected ContentDataProcessor $contentDataProcessor)
-    {
-    }
+    public function __construct(protected ListService $listService, protected ContentDataProcessor $contentDataProcessor) {}
 
     public function process(
         ContentObjectRenderer $cObj,
