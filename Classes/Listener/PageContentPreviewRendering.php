@@ -14,15 +14,14 @@ namespace B13\Listelements\Listener;
 
 use B13\Listelements\Service\ListService;
 use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Information\Typo3Version;
 
+#[AsEventListener(identifier: 'b13-listelements-page-content-preview-rendering')]
 class PageContentPreviewRendering
 {
-    protected ListService $listService;
-
-    public function __construct(ListService $listService)
+    public function __construct(protected ListService $listService)
     {
-        $this->listService = $listService;
     }
 
     public function __invoke(PageContentPreviewRenderingEvent $event): void

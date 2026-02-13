@@ -22,3 +22,5 @@ lib.contentElement {
 		}
 	}
 }
+
+# not required if you use record-transformation dataProcessing, s. README.md

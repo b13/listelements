@@ -1,9 +1,0 @@
-parameters:
-  level: 5
-  paths:
-    - %currentWorkingDirectory%/Classes
-  excludePaths:
-    - %currentWorkingDirectory%/Classes/Hooks/DrawItem.php
-  ignoreErrors:
-    - '#Call to an undefined static method TYPO3\\CMS\\Core\\Versioning\\VersionState::tryFrom\(\).#'
-    - '#Call to an undefined method TYPO3\\CMS\\Core\\Domain\\Repository\\PageRepository::getDefaultConstraints\(\).#'

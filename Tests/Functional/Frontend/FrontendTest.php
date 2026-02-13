@@ -12,6 +12,7 @@ namespace B13\Listelements\Tests\Functional\Service;
  * of the License, or any later version.
  */
 
+use PHPUnit\Framework\Attributes\Test;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequest;
 use TYPO3\TestingFramework\Core\Functional\Framework\Frontend\InternalRequestContext;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
@@ -38,9 +39,7 @@ class FrontendTest extends FunctionalTestCase
         'listelements_example',
     ];
 
-    /**
-     * @test
-     */
+    #[Test]
     public function itemIsRendered(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/single_element.csv');
@@ -57,9 +56,7 @@ class FrontendTest extends FunctionalTestCase
         self::assertStringContainsString('listitem-header', $body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function workspaceItemIsRenderedInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -81,9 +78,7 @@ class FrontendTest extends FunctionalTestCase
         self::assertStringNotContainsString('listitem-header', $body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function worspaceItemIsNotRenderedInNonWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -104,9 +99,7 @@ class FrontendTest extends FunctionalTestCase
         self::assertStringContainsString('listitem-header', $body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function workspaceItemsIsRenderedInCorrectOrderInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -127,9 +120,7 @@ class FrontendTest extends FunctionalTestCase
         self::assertStringContainsString('first item header-listelement-ws', $body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function deletedworkspaceItemIsNotRenderedInWorkspace(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/workspace.csv');
@@ -150,9 +141,7 @@ class FrontendTest extends FunctionalTestCase
         self::assertStringNotContainsString('listitem-header', $body);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function pageItemIsRendered(): void
     {
         $this->importCSVDataSet(__DIR__ . '/../Fixture/page.csv');

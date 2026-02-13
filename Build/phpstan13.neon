@@ -2,5 +2,3 @@ parameters:
   level: 5
   paths:
     - %currentWorkingDirectory%/Classes
-  excludePaths:
-    - %currentWorkingDirectory%/Classes/Hooks/DrawItem.php

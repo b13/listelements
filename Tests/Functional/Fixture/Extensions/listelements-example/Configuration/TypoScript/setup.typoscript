@@ -1,6 +1,6 @@
 
 @import 'EXT:fluid_styled_content/Configuration/TypoScript/setup.typoscript'
-@import 'EXT:listelements/Configuration/TypoScript/setup.typoscript'
+@import 'EXT:listelements/Configuration/Sets/listelements/setup.typoscript'
 
 tt_content.header {
   templateName = Header
