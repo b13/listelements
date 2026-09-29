@@ -6,8 +6,9 @@
     "GPL-2.0-or-later"
   ],
   "require": {
-    "typo3/cms-backend": "^13.4 || ^14.1",
-    "typo3/cms-fluid-styled-content": "^13.4 || ^14.1"
+    "typo3/cms-core": "^13.4 || ^14.3",
+    "typo3/cms-backend": "^13.4 || ^14.3",
+    "typo3/cms-fluid-styled-content": "^13.4 || ^14.3"
   },
   "extra": {
     "typo3/cms": {
@@ -21,8 +22,8 @@
   "prefer-stable": true,
   "require-dev": {
     "typo3/testing-framework": "^9.1",
-    "typo3/cms-frontend": "^13.4 || ^14.1",
-    "typo3/cms-workspaces": "^13.4 || ^14.1",
+    "typo3/cms-frontend": "^13.4 || ^14.3",
+    "typo3/cms-workspaces": "^13.4 || ^14.3",
     "phpstan/phpstan": "^2.1",
     "typo3/coding-standards": "^0.8",
     "b13/listelements-example": "*"
